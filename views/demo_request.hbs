@@ -1,0 +1,57 @@
+<div
+    style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;">
+    <h2 style="color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px;">New Free
+        Demo Request Received</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <tr>
+            <td style="padding: 8px; font-weight: bold; color: #34495e;">Full Name:</td>
+            <td style="padding: 8px;">{{fullName}}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold; color: #34495e;">Phone Number:</td>
+            <td style="padding: 8px;">{{phoneNumber}}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold; color: #34495e;">Business Email:</td>
+            <td style="padding: 8px;">{{businessEmail}}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold; color: #34495e;">Company Name:</td>
+            <td style="padding: 8px;">{{companyName}}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold; color: #34495e;">Company Size:</td>
+            <td style="padding: 8px;">{{companySize}}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold; color: #34495e;">Job Title:</td>
+            <td style="padding: 8px;">{{jobTitle}}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold; color: #34495e;">Project Name:</td>
+            <td style="padding: 8px;">{{projectName}}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold; color: #34495e;">Project Description:</td>
+            <td style="padding: 8px;">{{projectDescription}}</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; font-weight: bold; color: #34495e;">Uploaded Files:</td>
+            <td style="padding: 8px;">
+                {{#if files}}
+                <ul>
+                    {{#each files}}
+                    <li>
+                        <a href="{{this.url}}" download  target="_blank">{{this.name}}</a>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{else}}
+                No files uploaded
+                {{/if}}
+            </td>
+        </tr>
+    </table>
+    <p style="margin-top: 20px; font-size: 12px; color: #7f8c8d; text-align: center;">This is an automated email. Please
+        do not reply.</p>
+</div>

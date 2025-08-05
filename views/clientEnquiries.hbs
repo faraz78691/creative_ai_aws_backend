@@ -1,0 +1,75 @@
+<div style="font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;">
+  <h2 style="color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px;">
+    New Project Enquiry Received
+  </h2>
+
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <tr><td style="padding: 8px; font-weight: bold;">Full Name:</td><td>{{fullName}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Phone Number:</td><td>{{phoneNumber}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Business Email:</td><td>{{businessEmail}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Company Name:</td><td>{{companyName}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Customer Type:</td><td>{{clientType}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Company Address:</td><td>{{companyAddress}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Country:</td><td>{{country}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Project Name:</td><td>{{projectName}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Platform Required:</td><td>{{platform}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Estimated Client Time (weeks):</td><td>{{estimated_time}}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold;">Total Project Cost without Tax:</td><td>{{projectTotal}}</td></tr>
+  </table>
+
+<h3 style="margin-top: 30px; color: #2c3e50;">Project Features</h3>
+
+{{#each features}}
+  <div style="margin-bottom: 30px;">
+    <h4 style="color: #2c3e50;">{{featuresName}}</h4>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #ccc;">
+      <thead style="background-color: #eaf2f8;">
+        <tr>
+
+          <th style="padding: 8px; border: 1px solid #ccc;">Total Feature Price (₹)</th>
+          <th style="padding: 8px; border: 1px solid #ccc;">Total Customisation Price (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          
+          <td style="padding: 8px; border: 1px solid #ccc;">{{totalSubFeaturedPrice}}</td>
+          <td style="padding: 8px; border: 1px solid #ccc;">{{totalCustomisationPrice}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h5 style="margin-top: 10px;">Sub-Features:</h5>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 5px; border: 1px solid #ddd;">
+      <thead style="background-color: #f4f6f6;">
+        <tr>
+          <th style="padding: 8px; border: 1px solid #ccc;">Sub-Feature Name</th>
+          <th style="padding: 8px; border: 1px solid #ccc;">Sub-Feature Price (₹)</th>
+          <th style="padding: 8px; border: 1px solid #ccc;">Customization Price (₹)</th>
+          <th style="padding: 8px; border: 1px solid #ccc;">Total (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each subFeaturesListWithPrice}}
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ccc;">{{subFeaturesName}}</td>
+            <td style="padding: 8px; border: 1px solid #ccc;">{{subFeaturedPrice}}</td>
+            <td style="padding: 8px; border: 1px solid #ccc;">{{customisationPrice}}</td>
+            <td style="padding: 8px; border: 1px solid #ccc;">
+              {{calcTotal subFeaturedPrice customisationPrice}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{/each}}
+
+
+  <h4 style="text-align: right; margin-top: 20px;">Total Project Cost without Tax: ₹{{projectTotal}}</h4>
+
+ 
+  <p style="margin-top: 30px; font-size: 12px; color: #7f8c8d; text-align: center;">
+    This is an automated email. Please do not reply.
+  </p>
+</div>

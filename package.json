@@ -1,0 +1,52 @@
+{
+  "name": "cti-builder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "offline": "npm run validate && npx serverless offline start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.848.0",
+    "@paypal/checkout-server-sdk": "^1.0.3",
+    "aws-sdk": "^2.1692.0",
+    "base64url": "^3.0.1",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "busboy": "^1.6.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "fs": "^0.0.1-security",
+    "handlebars": "^4.7.8",
+    "http": "^0.0.1-security",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "langchain": "^0.3.15",
+    "localStorage": "^1.0.4",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.14.2",
+    "nodemailer": "^6.10.0",
+    "nodemailer-express-handlebars": "^7.0.0",
+    "path": "^0.12.7",
+    "razorpay": "^2.9.6",
+    "serverless": "^3.40.0",
+    "serverless-http": "^3.2.0",
+    "url": "^0.11.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-esbuild": "^1.55.1",
+    "serverless-offline": "^14.4.0"
+  }
+}

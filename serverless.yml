@@ -1,0 +1,68 @@
+service: creativeai
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  timeout: 30
+  region: eu-north-1
+  stage: prod
+  profile: creative-ai
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+      Resource:
+        - arn:aws:s3:::creative-ai-bucket/*
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+functions:
+  app:
+    handler: handler.app
+    events:
+      - http:
+          path: /
+          method: any
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-Amz-Date
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+      - http:
+          path: /{proxy+}
+          method: any
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+              - X-Amz-Date
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+package:
+  individually: true
+  patterns:
+    - '!node_modules/aws-sdk/**'   # Exclude AWS SDK (already included in Lambda)
+    - '!tests/**'
+    - '!docs/**'
+    - '!*.md'
+    - '!*.log'
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: false
+    exclude: ['aws-sdk']
+    target: node18
+    platform: node
+    concurrency: 10

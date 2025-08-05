@@ -1,0 +1,6 @@
+{
+    "watch": ["."],
+    "ext": "js,json,yml",
+    "ignore": ["node_modules"],
+    "exec": "npx serverless offline --host 0.0.0.0"
+  }
