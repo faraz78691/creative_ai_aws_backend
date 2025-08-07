@@ -107,12 +107,12 @@ export const getSubFeatureByFId = async (featureIds) => {
 };
 export const getFeatureNameBySubFeature = async (subFeatureName, featureId = null) => {
     if(featureId){
-        return db.query(`SELECT bs.id, bs.subFeaturesName, bs.featureId, bf.featureName
+        return db.query(`SELECT bs.id, bs.subFeaturesName, bs.featureId, bf.featuresName
             FROM builder_subfeatures bs
             JOIN builder_features bf ON bs.featureId = bf.id
             WHERE bs.subFeaturesName = ? AND bs.featureId != ?`, [subFeatureName, featureId]);
     } else{
-        return db.query(`SELECT bs.id, bs.subFeaturesName, bs.featureId, bf.featureName
+        return db.query(`SELECT bs.id, bs.subFeaturesName, bs.featureId, bf.featuresName
             FROM builder_subfeatures bs
             JOIN builder_features bf ON bs.featureId = bf.id
             WHERE bs.subFeaturesName = ?`, [subFeatureName]);

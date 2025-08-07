@@ -6,14 +6,20 @@ provider:
   timeout: 30
   region: eu-north-1
   stage: prod
-  profile: creative-ai
+  profile: serverless-admin
+
 
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - s3:PutObject
+      - s3:PutObject
+      - s3:PutObjectAcl
+      - s3:GetObject
+      - s3:ListBucket
       Resource:
-        - arn:aws:s3:::creative-ai-bucket/*
+      - arn:aws:s3:::creative-ai-bucket/*
+      - arn:aws:s3:::creative-ai-bucket
+
 
 plugins:
   - serverless-dotenv-plugin
@@ -51,7 +57,6 @@ functions:
 package:
   individually: true
   patterns:
-    - '!node_modules/aws-sdk/**'   # Exclude AWS SDK (already included in Lambda)
     - '!tests/**'
     - '!docs/**'
     - '!*.md'
@@ -62,7 +67,6 @@ custom:
     bundle: true
     minify: false
     sourcemap: false
-    exclude: ['aws-sdk']
     target: node18
     platform: node
     concurrency: 10

@@ -363,7 +363,7 @@ export const addSubFeature = async (req, res) => {
         const existingFeature = await getFeatureNameBySubFeature(subFeatureName);
 
         if (existingFeature.length > 0) {
-            return handleError(res, 400, `This Subfeature already exists in ${existingFeature[0].featureName} feature`);
+            return handleError(res, 400, `This Subfeature already exists in ${existingFeature[0].featuresName} feature`);
         }
         const result = await insertData("builder_subfeatures", { featureId: featureId, subFeaturesName: subFeatureName, estimated_time: estimatedTime });
 
@@ -598,7 +598,7 @@ export const deleteProjectTemplateImageById = async (req, res) => {
           const existingFeature = await getFeatureNameBySubFeature(subFeatureName ,id);
 
           if (existingFeature.length > 0) {
-              return handleError(res, 400, `This Subfeature already exists in ${existingFeature[0].featureName} feature`);
+              return handleError(res, 400, `This Subfeature already exists in ${existingFeature[0].featuresName} feature`);
           }
 
         const result = await updateData('builder_subfeatures', { subFeaturesName: subFeatureName ,estimated_time:estimatedTime }, `WHERE id = ${id}`);

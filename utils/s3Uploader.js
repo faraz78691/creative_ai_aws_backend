@@ -21,16 +21,11 @@ const s3 = new S3Client({
 
 const BUCKET_NAME = process.env.S3_BUCKET_NAME;
 
-/**
- * Uploads a file buffer to AWS S3
- * @param {Object} params
- * @param {Object} params.file - File object { filename, buffer, mimetype }
- * @param {string} [params.folder='uploads'] - S3 folder
- * @param {string} [params.prefix=''] - Filename prefix
- * @returns {string} - Public S3 URL
- */
 export const uploadToS3 = async ({ file, folder = 'uploads', prefix = '' }) => {
-  if (!file || !file.buffer) throw new Error('Invalid file');
+  if (!file || !file.buffer) {
+    console.error('Invalid file or missing buffer:', file);
+    throw new Error('Invalid file');
+  }
 
   const fileNameSource = file.originalname || file.filename || '';
   const extension = path.extname(fileNameSource) || '.jpg';
@@ -41,15 +36,22 @@ export const uploadToS3 = async ({ file, folder = 'uploads', prefix = '' }) => {
     Bucket: BUCKET_NAME,
     Key: s3Key,
     Body: file.buffer,
-    ContentType: file.mimetype || 'image/jpeg',
-    // ACL: 'public-read', // remove if ACLs are disabled
+    ContentType: file.mimetype || 'image/jpeg'
   };
 
-  await s3.send(new PutObjectCommand(uploadParams));
+  try {
+    console.log('Uploading to S3 with params:', uploadParams);
+    const result = await s3.send(new PutObjectCommand(uploadParams));
+    console.log('Upload Success:', result);
 
-  const s3Url = `https://${BUCKET_NAME}.s3.${process.env.CUSTOM_AWS_REGION}.amazonaws.com/${s3Key}`;
-  return s3Url;
+    const s3Url = `https://${BUCKET_NAME}.s3.${process.env.CUSTOM_AWS_REGION}.amazonaws.com/${s3Key}`;
+    return s3Url;
+  } catch (error) {
+    console.error('S3 Upload Failed:', error);
+    throw error;
+  }
 };
+
 
 export const deleteObjectFromS3 = async (key) => {
   const params = {

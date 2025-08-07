@@ -25,7 +25,7 @@ const createPool = () => {
 createPool();
  
 
-export const query = async (sql, params = [], retries = 3, delay = 3000) => {
+export const query = async (sql, params = [], retries = 2, delay = 1000) => {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
       console.log("sql", sql);
